@@ -1,0 +1,63 @@
+const{Types,model,Schema}=require('mongoose');
+const { boolean } = require('webidl-conversions');
+const schema=Schema({
+    name:{
+        type:String,
+        required:true,
+        trim:true,
+        unieque:true
+    },
+    slug:String,
+    description:{
+        type:String,
+        required:true,
+        trim:true,
+        min:5,
+        max:20
+    },
+    quantity:{
+        type:Number,
+        required:true,
+    },
+    colors:{
+        type:[String],
+        required:true,
+    },
+    price:{
+        type:Number,
+        required:true
+    },
+    price_After:Number,
+    images:{
+        type:[String],
+        required:true,
+    },
+    subcategory_Id:{
+        type:Types.ObjectId,
+        required:true,
+        ref:subcategory
+    },
+    brand_Id:{
+        type:Types.ObjectId,
+        required:true,
+        ref:brand
+    },
+    ratingAvg:{
+        type:Number,
+        min:0,
+        max:5
+    },
+    ratingCount:{
+        type:Number,
+        default:0
+    },
+    category_Id:Types.ObjectId,
+    imageCover:String,
+    isSold:{
+        type:boolean,
+        default:false,
+
+    }
+});
+const productModel=model('product',schema);
+module.exports=productModel;

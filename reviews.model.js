@@ -1,0 +1,29 @@
+const{Types,model,Schema}=require('mongoose');
+const schema=Schema({
+    title:{
+        type:String,
+        min:5,
+        trim:true,
+    },
+    user_id:{
+        type:Types.ObjectId,
+        ref:'user',
+        required:true
+    },
+    product_Id:{
+        type:Types.ObjectId,
+        ref:'products',
+        required:true
+    },
+    rating:{
+        type:Number,
+        required:true,
+        min:1,
+        max:5
+    },
+   
+},
+{
+    timestamps:true
+}
+)
